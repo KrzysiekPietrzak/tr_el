@@ -23,6 +23,8 @@
                     <th scope="col">Opis</th>
                     <th scope="col">Ilość</th>
                     <th scope="col">Cena</th>
+                    <th scope="col">Zdjęcie</th>
+                    <th scope="col">Kategoria</th>
                     <th scope="col">Akcje</th>
                 </tr>
             </thead>
@@ -35,6 +37,11 @@
                         <td>{{ $product->description }}</td>
                         <td>{{ $product->amount}}</td>
                         <td>{{ $product->price }}</td>
+                        <td>@if(!is_null($product->image_path))   
+                            <p>{{$product->image_path}}</p>                  
+                                 <img src="{{Vite::asset('/public/storage/'.$product->image_path)}}" class="img-fluid mx-auto d-block" width="15px"  alt="Zdjecie produktu">
+                                                                                                                                                                    @endif</td>
+                        <td>@if(!is_null($product->category)){{ $product->category->name }}@endif</td>
                         <td>
                             <a href="{{route('products.edit',$product->id)}}">
                                 <button class="btn btn-primary btn-sm">E</button>

@@ -85,14 +85,12 @@
 /******/ })
 /************************************************************************/
 /******/ ({
-
 /***/ "./resources/js/welcome.js":
 /*!*********************************!*\
   !*** ./resources/js/welcome.js ***!
   \*********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
-
 $(function () {
   $('div.products-count a').click(function (event) {
     event.preventDefault();
@@ -101,11 +99,35 @@ $(function () {
   });
   $('a#filter-button').click(function (event) {
     event.preventDefault();
-    getProducts($('a.products-actual-count').text());
+    getProducts($('a.products-actual-count').first().text());
+  });
+  $('button.add-cart-button').click(function (event) {
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: WELCOME_DATA.addToCart + $(this).data('id')
+    }).done(function () {
+      Swal.fire({
+        title: 'Brawo!',
+        text: 'Produkt dodany do koszyka!',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-cart-plus"></i> Przejdź do koszyka',
+        cancelButtonText: '<i class="fas fa-shopping-bag"></i> Kontynuuj zakupy'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          alert('OK');
+        }
+      });
+    }).fail(function () {
+      Swal.fire('Oops...', 'Wystąpił błąd', 'error');
+    });
   });
 
   function getProducts(paginate) {
     var form = $('form.sidebar-filter').serialize();
+
+
     $.ajax({
       method: "GET",
       url: "/",
@@ -123,25 +145,28 @@ $(function () {
 
   function getImage(product) {
     if (!!product.image_path) {
-      return storagePath + product.image_path;
+      return WELCOME_DATA.storagePath + product.image_path;
     }
 
-    return defaultImage;
+    return WELCOME_DATA.defaultImage;
   }
 });
 
-/***/ }),
 
+    
+          
+            
+
+    
+    
+  
+/***/ }),
 /***/ 2:
 /*!***************************************!*\
   !*** multi ./resources/js/welcome.js ***!
   \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
-
 module.exports = __webpack_require__(/*! D:\Projekty\shop-yt\resources\js\welcome.js */"./resources/js/welcome.js");
-
-
 /***/ })
-
 /******/ });

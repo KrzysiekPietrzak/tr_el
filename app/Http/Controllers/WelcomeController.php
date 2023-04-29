@@ -38,7 +38,6 @@ class WelcomeController extends Controller
         return view("welcome", [
             'products' => $query->get(),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(),
-            'defaultImage' => 'https://via.placeholder.com/240x240/5fa9f8/efefef'
-        ]);
+            'defaultImage' => config('shop.defaultImage')        ]);
     }
 }   

@@ -46,12 +46,11 @@
                         <td>
                             <a href="{{route('products.edit',$product->id)}}">
                                 <button class="btn btn-primary btn-sm">E</button>
-                            </a>
+                            </a> 
 
                             <a href="{{route('products.show',$product->id)}}">
                                 <button class="btn btn-success btn-sm">P</button>
-                            </a>
-
+                            </a> 
                             <button class="btn btn-danger btn-sm delete" data-id="{{ $product->id }}">X</button>
                         </td>
                     </tr>

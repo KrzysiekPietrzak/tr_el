@@ -22,6 +22,7 @@
                             </div>
                             <div class="dropdown float-right">
                                 <label class="mr-2">View:</label>
+
                                 <a class="btn btn-lg btn-light dropdown-toggle products-actual-count" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">5 <span class="caret"></span></a>
                                 <div class="dropdown-menu dropdown-menu-right products-count" aria-labelledby="navbarDropdown" x-placement="bottom-end" style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
                                     <a class="dropdown-item" href="#">5</a>

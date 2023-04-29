@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app-233874fe.js",
+    "file": "assets/app-a14de8b6.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
@@ -9,8 +9,13 @@
     "isEntry": true,
     "src": "resources/js/delete.js"
   },
+  "resources/js/welcome.js": {
+    "file": "assets/welcome-2768be44.js",
+    "isEntry": true,
+    "src": "resources/js/welcome.js"
+  },
   "resources/sass/app.scss": {
-    "file": "assets/app-67dcdfd2.css",
+    "file": "assets/app-4922558f.css",
     "isEntry": true,
     "src": "resources/sass/app.scss"
   }

@@ -51,6 +51,7 @@
                                         </h4>
                                         <h5 class="card-price small">
                                             <i>PLN {{ $product->price }}</i>
+
                                         </h5>
                                     </div>
                                 </div>

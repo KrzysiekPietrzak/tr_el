@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
               @include('helpers.flash-messages')
 
@@ -30,6 +31,8 @@
                 </tr>
             </thead>
             <tbody>
+<i class="fa-solid fa-cart-arrow-down"></i>
+<i class="fa-solid fa-cart-arrow-down"></i>
 
                 @foreach ($products as $product)
                     <tr>

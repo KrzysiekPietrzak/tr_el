@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -60,10 +61,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a  class="dropdown-item" href="/users/list">Użytkownicy</a>    
+                                @can('isAdmin')
+                                    <a  class="dropdown-item" href="/users/list">Użytkownicy</a>    
                                 <a  class="dropdown-item" href="{{route('products.index')}}">Produkty</a>    
                                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                   @endcan
+                                   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>

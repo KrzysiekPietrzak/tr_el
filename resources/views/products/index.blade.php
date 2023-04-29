@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container">
+              @include('helpers.flash-messages')
 
     <div class="row">
 <div class="col-6"> Lista produktów</div> 
@@ -64,6 +65,7 @@
 
 @section('javascript')
 const deleteURL = "{{url('products')}}/"
+
 
 @endsection
 @section('js-files')

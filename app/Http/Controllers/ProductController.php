@@ -10,6 +10,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Session;
 class ProductController extends Controller
 {
     /**
@@ -48,8 +49,8 @@ class ProductController extends Controller
 $product->image_path = Storage::disk('public')->put('products', $request->file('image'));
         }
         $product->save();
-        return redirect(route('products.index'));
-    }
+        return redirect(route('products.index'))->with('status', __('shop.product.status.store.success'));
+    }    
     /**
      * Display the specified resource.
      *
@@ -90,18 +91,18 @@ $product->image_path = Storage::disk('public')->put('products', $request->file('
 $product->image_path = Storage::disk('public')->put('products', $request->file('image'));
         }
         $product->save();
-        return redirect(route('products.index'));
-    }
-    /**
+return redirect(route('products.index'))->with('status', __('shop.product.status.update.success'));    /**
      * Remove the specified resource from storage.
      *
      * @param  Product  $product
      * @return JsonResponse
      */
+    }
     public function destroy(Product $product): JsonResponse
     {
         try {
             $product->delete();
+                        Session::flash('status', __('shop.product.status.delete.success'));
             return response()->json([
                 'status' => 'success'
             ]);

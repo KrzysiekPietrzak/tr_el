@@ -74,3 +74,6 @@ Vite::asset public
 npm run dev
 php artisan serve
 npm run watch
+
+alert dismissable 
+data-bs-dismiss

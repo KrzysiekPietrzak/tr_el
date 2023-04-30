@@ -6,8 +6,12 @@ use Exception;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\JsonResponse;
+
 class WelcomeController extends Controller
+
+
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +23,6 @@ class WelcomeController extends Controller
     {
         $filters = $request->query('filter');
         $paginate = $request->query('paginate') ?? 5;
-
         $query = Product::query();
         if (!is_null($filters)) {
             if (array_key_exists('categories', $filters)) {
@@ -31,13 +34,13 @@ class WelcomeController extends Controller
             if (!is_null($filters['price_max'])) {
                 $query = $query->where('price', '<=', $filters['price_max']);
             }
-
             return response()->json($query->paginate($paginate));
         }
-
         return view("welcome", [
-            'products' => $query->get(),
+            'products' => $query->paginate($paginate),
             'categories' => ProductCategory::orderBy('name', 'ASC')->get(),
-            'defaultImage' => config('shop.defaultImage')        ]);
+            'defaultImage' => config('shop.defaultImage'),
+            'isGuest' => Auth::guest()
+        ]);
     }
-}   
+}

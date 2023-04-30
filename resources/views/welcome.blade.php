@@ -8,7 +8,7 @@
                         <div class="col-12">
                             <div class="dropdown text-md-left text-center float-md-left mb-3 mt-3 mt-md-0 mb-md-0">
                                 <label class="mr-2">Sort by:</label>
-                                <a class="btn btn-lg btn-light dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relevance <span class="caret"></span></a>
+                                <a class="btn btn-lg btn-light dropdown-bs-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Relevance <span class="caret"></span></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" x-placement="bottom-start" style="position: absolute; transform: translate3d(71px, 48px, 0px); top: 0px; left: 0px; will-change: transform;">
                                     <a class="dropdown-item" href="#">Relevance</a>
                                     <a class="dropdown-item" href="#">Price Descending</a>
@@ -21,7 +21,7 @@
                                 <button type="button" class="btn btn-lg btn-light"> <span class="fa fa-arrow-right"></span> </button>
                             </div>
                             <div class="dropdown float-right">
-                                <a class="btn btn-lg btn-light dropdown-toggle products-actual-count" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">5<span class="caret"></span></a>
+                                <a class="btn btn-lg btn-light dropdown-bs-toggle products-actual-count" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">5<span class="caret"></span></a>
                                 <div class="dropdown-menu dropdown-menu-right products-count" aria-labelledby="navbarDropdown" x-placement="bottom-end" style="will-change: transform; position: absolute; transform: translate3d(120px, 48px, 0px); top: 0px; left: 0px;">
                                     <a class="dropdown-item" href="#">5</a>
                                     <a class="dropdown-item" href="#">10</a>
@@ -37,7 +37,7 @@
                                 <div class="card h-100 border-0">
                                     <div class="card-img-top">
                                         @if(!is_null($product->image_path))
-                                            <img src="{{ asset('storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
+                                            <img src="{{ Vite::asset('public/storage/' . $product->image_path) }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                         @else
                                             <img src="{{ $defaultImage }}" class="img-fluid mx-auto d-block" alt="Zdjęcie produktu">
                                         @endif
@@ -107,9 +107,11 @@
 @endsection
 @section('javascript')
     const WELCOME_DATA = {
-        storagePath: '{{ Vite::asset('storage') }}/',
+        storagePath: '{{ Vite::asset('public/storage') }}/',
         defaultImage: '{{ $defaultImage }}',
-        addToCart: '{{ url('cart') }}/'
+        addToCart: '{{ url('cart') }}/',
+        listCart: '{{ url('cart') }}',
+        isGuest: '{{ $isGuest }}'
     }
 @endsection
 @section('js-files')

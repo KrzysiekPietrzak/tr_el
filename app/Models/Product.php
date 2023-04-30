@@ -28,6 +28,9 @@ class Product extends Model
     {
         return $this->belongsTo(ProductCategory::class);
     }
+        public function orders():BelongsToMany{
+        return $this->BelongsToMany(Order::class);
+    }
 
      public function isSelectedCategory(int $category_id): bool
     {

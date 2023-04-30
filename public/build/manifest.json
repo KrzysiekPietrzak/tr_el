@@ -1,8 +1,16 @@
 {
+  "_axios-6ed27e3f.js": {
+    "file": "assets/axios-6ed27e3f.js"
+  },
   "resources/js/app.js": {
-    "file": "assets/app-a14de8b6.js",
+    "file": "assets/app-827fec81.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/bootstrap.js": {
+    "file": "assets/bootstrap-c5e377b6.js",
+    "isEntry": true,
+    "src": "resources/js/bootstrap.js"
   },
   "resources/js/delete.js": {
     "file": "assets/delete-747aa638.js",

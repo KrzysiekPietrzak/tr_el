@@ -4,6 +4,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HelloWorldController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\OrderController;
 
   
 use App\Http\Controllers\WelcomeController;
@@ -25,10 +26,15 @@ Route::middleware(['auth', 'verified'])->group(function() {
         Route::resource('products', ProductController::class);
         Route::get('/users/list', [UserController::class, 'index']);
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
+            Route::resource('users', UserController::class)->only([
+            'index', 'edit', 'update', 'destroy'
+        ]);
     });
     Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
     Route::post('/cart/{product}', [CartController::class, 'store'])->name('cart.store');
     Route::delete('/cart/{product}', [CartController::class, 'destroy'])->name('cart.destroy');
+     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 

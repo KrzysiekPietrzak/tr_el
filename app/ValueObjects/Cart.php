@@ -1,11 +1,15 @@
 <?php
+
 namespace App\ValueObjects;
+
 use App\Models\Product;
 use Closure;
 use Illuminate\Support\Collection;
+
 class Cart
 {
     private Collection $items;
+
     /**
      * @param Collection|null $items
      */
@@ -13,12 +17,25 @@ class Cart
     {
         $this->items = $items ?? Collection::empty();
     }
+
     /**
      * @return Collection
      */
     public function getItems(): Collection
     {
         return $this->items;
+    }
+
+    public function hasItems(): bool
+    {
+        return $this->items->isNotEmpty();
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->items->sum(function ($item) {
+           return $item->getQuantity();
+        });
     }
 
     public function getSum(): float
@@ -37,7 +54,6 @@ class Cart
             $newItem = $item->addQuantity($product);
         } else {
             $newItem = new CartItem($product);
- 
         }
         $items->add($newItem);
         return new Cart($items);
@@ -57,8 +73,6 @@ class Cart
     private function isProductIdSameAsItemProduct(Product $product): Closure
     {
         return function ($item) use ($product) {
-
-
             return $product->id == $item->getProductId();
         };
     }
